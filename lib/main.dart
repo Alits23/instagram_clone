@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/screens/switch_account_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashPage(),
+      debugShowCheckedModeBanner: false,
+      home: SwitchAccountPage(),
     );
   }
 }
@@ -20,6 +22,14 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SwitchAccountPage(),
+        ),
+      );
+    });
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -54,7 +64,7 @@ class SplashPage extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
