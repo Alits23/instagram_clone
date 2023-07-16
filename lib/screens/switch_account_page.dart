@@ -16,17 +16,16 @@ class SwitchAccountPage extends StatelessWidget {
             image: DecorationImage(
               image: AssetImage('images/pattern1.png'),
               repeat: ImageRepeat.repeat,
-              opacity: 0.2,
+              opacity: 0.1,
             ),
           ),
         ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Container(
                 child: Stack(
-                  alignment: Alignment.center,
+                  alignment: AlignmentDirectional.center,
                   children: [
                     Container(
                       decoration: BoxDecoration(
@@ -38,70 +37,55 @@ class SwitchAccountPage extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: 220,
+                      top: 200,
                       child: ClipRRect(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 44),
-                            child: Container(
-                              width: 340,
-                              height: 352,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color.fromRGBO(255, 255, 255, 0.5),
-                                    Color.fromRGBO(255, 255, 255, 0.2),
-                                  ],
-                                ),
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 32),
-                                  Image(
-                                    image: AssetImage('images/profile.png'),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    'Ali Tashakori',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  SizedBox(height: 20),
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: pinkColorIcon,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        'confirm',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: whiteColor,
-                                        ),
-                                      )),
-                                  SizedBox(height: 45),
-                                  Text(
-                                    'switch account',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: whiteColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                          child: Container(
+                            width: 340,
+                            height: 355,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromRGBO(255, 255, 255, 0.5),
+                                  Color.fromRGBO(255, 255, 255, 0.2),
                                 ],
                               ),
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 32),
+                                Image(
+                                  image: AssetImage('images/profile.png'),
+                                ),
+                                SizedBox(height: 20),
+                                Text(
+                                  'Ali Tashakori',
+                                  style: Theme.of(context).textTheme.headline4,
+                                ),
+                                SizedBox(height: 20),
+                                SizedBox(
+                                  height: 46,
+                                  width: 129,
+                                  child: ElevatedButton(
+                                    style: Theme.of(context)
+                                        .elevatedButtonTheme
+                                        .style,
+                                    onPressed: () {},
+                                    child: Text(
+                                      'confirm',
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 35),
+                                Text(
+                                  'switch account',
+                                  style: Theme.of(context).textTheme.headline4,
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -118,15 +102,21 @@ class SwitchAccountPage extends StatelessWidget {
                 children: [
                   Text(
                     'Don’t have an account?',
-                    style: TextStyle(fontSize: 16, color: whiteColor),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'GB',
+                      color: Colors.grey[700],
+                    ),
                   ),
                   Text(
                     ' / ',
-                    style: TextStyle(fontSize: 16, color: whiteColor),
+                    style: TextStyle(
+                        fontSize: 16, fontFamily: 'GB', color: whiteColor),
                   ),
                   Text(
                     'Sign up',
-                    style: TextStyle(fontSize: 16, color: whiteColor),
+                    style: TextStyle(
+                        fontSize: 16, fontFamily: 'GB', color: whiteColor),
                   ),
                 ],
               ),

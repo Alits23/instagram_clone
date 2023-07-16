@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/screens/switch_account_page.dart';
 
+import 'constants/colors/colors.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,6 +13,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textTheme: TextTheme(
+          headline4: TextStyle(
+            fontFamily: 'GB',
+            fontSize: 16,
+            color: whiteColor,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: pinkColorIcon,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            textStyle: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 16,
+            ),
+          ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: SwitchAccountPage(),
     );
