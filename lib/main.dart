@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/screens/login_page.dart';
 import 'package:instagram/screens/switch_account_page.dart';
 
 import 'constants/colors/colors.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SwitchAccountPage(),
+      home: LoginPage(),
     );
   }
 }
