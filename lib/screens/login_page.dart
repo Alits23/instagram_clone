@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       children: [
         SizedBox(
-          height: 40,
+          height: 80,
         ),
         Image(
           image: AssetImage('images/rocket.png'),
@@ -107,6 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(top: 18, left: 44, right: 44),
                     child: TextField(
+                      style: TextStyle(
+                        fontFamily: 'GB',
+                        fontSize: 14,
+                        color: whiteColor,
+                      ),
                       focusNode: focusNode1,
                       decoration: InputDecoration(
                         contentPadding:
@@ -136,6 +141,11 @@ class _LoginPageState extends State<LoginPage> {
                     padding:
                         const EdgeInsets.only(top: 16, left: 44, right: 44),
                     child: TextField(
+                      style: TextStyle(
+                        fontFamily: 'GB',
+                        fontSize: 14,
+                        color: whiteColor,
+                      ),
                       focusNode: focusNode2,
                       decoration: InputDecoration(
                         contentPadding:
