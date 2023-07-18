@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/constants/colors/colors.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  FocusNode focusNode1 = FocusNode();
+  FocusNode focusNode2 = FocusNode();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    focusNode1.addListener(() {
+      setState(() {});
+    });
+    focusNode2.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +52,10 @@ class LoginPage extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 80,
+          height: 40,
         ),
-        Expanded(
-          child: Image(
-            image: AssetImage('images/rocket.png'),
-          ),
+        Image(
+          image: AssetImage('images/rocket.png'),
         ),
         Expanded(
           child: Container(),
@@ -90,7 +107,10 @@ class LoginPage extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 18, left: 44, right: 44),
                     child: TextField(
+                      focusNode: focusNode1,
                       decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(width: 3, color: greyColor),
@@ -106,7 +126,8 @@ class LoginPage extends StatelessWidget {
                         labelStyle: TextStyle(
                           fontSize: 14,
                           fontFamily: 'GB',
-                          color: pinkColorIcon,
+                          color:
+                              focusNode1.hasFocus ? pinkColorIcon : whiteColor,
                         ),
                       ),
                     ),
@@ -115,7 +136,10 @@ class LoginPage extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 16, left: 44, right: 44),
                     child: TextField(
+                      focusNode: focusNode2,
                       decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                           borderSide: BorderSide(width: 3, color: greyColor),
@@ -131,7 +155,8 @@ class LoginPage extends StatelessWidget {
                         labelStyle: TextStyle(
                           fontSize: 14,
                           fontFamily: 'GB',
-                          color: pinkColorIcon,
+                          color:
+                              focusNode2.hasFocus ? pinkColorIcon : whiteColor,
                         ),
                       ),
                     ),
@@ -151,7 +176,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50),
+                    padding: const EdgeInsets.only(top: 25, bottom: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -187,5 +212,12 @@ class LoginPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    focusNode1.dispose();
+    focusNode2.dispose();
+    super.dispose();
   }
 }
