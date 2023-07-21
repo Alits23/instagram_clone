@@ -9,27 +9,24 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor1,
       appBar: AppBar(
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 128,
-              height: 16,
-              child: Image.asset(
-                'images/moodinger_logo.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Image.asset('images/icon_direct.png'),
-              splashRadius: 0.01,
-            ),
-          ],
-        ),
         backgroundColor: backgroundColor1,
         elevation: 0,
+        centerTitle: false,
+        title: Container(
+          width: 128,
+          height: 24,
+          child: Image.asset(
+            'images/moodinger_logo.png',
+          ),
+        ),
+        actions: [
+          Container(
+            width: 24,
+            height: 24,
+            margin: EdgeInsets.only(right: 18),
+            child: Image.asset('images/icon_direct.png'),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 13, left: 17),
