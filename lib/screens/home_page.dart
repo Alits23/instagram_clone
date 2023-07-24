@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:instagram/constants/colors/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -51,21 +53,64 @@ class HomePage extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 15,
-                  child: Container(
-                    width: 340,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: pinkColorIcon,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset('images/icon_hart.png'),
-                        Image.asset('images/icon_comments.png'),
-                        Image.asset('images/icon_share.png'),
-                        Image.asset('images/icon_save.png'),
-                      ],
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                      child: Container(
+                        width: 340,
+                        height: 46,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: pinkColorIcon,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(255, 255, 255, 0.5),
+                              Color.fromRGBO(255, 255, 255, 0.2),
+                            ],
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Image.asset('images/icon_hart.png'),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text('25.6 K'),
+                                SizedBox(
+                                  width: 40,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Image.asset('images/icon_comments.png'),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text('5.6 K'),
+                                SizedBox(
+                                  width: 40,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Image.asset('images/icon_share.png'),
+                                SizedBox(
+                                  width: 54,
+                                ),
+                              ],
+                            ),
+                            Image.asset('images/icon_save.png'),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 )
