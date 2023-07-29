@@ -32,92 +32,115 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Center(
-          child: Container(
-            width: 394,
-            height: 440,
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Positioned(
-                  top: 0,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset('images/post_cover.png'),
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Center(
+                        child: Text('data'),
+                      );
+                    },
+                  );
+                },
+                child: Text('Click for bottom sheet'),
+              ),
+              Container(
+                height: 120,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return index == 0 ? _getAddStory() : _getStoryListBox();
+                  },
                 ),
-                Positioned(
-                  top: 15,
-                  right: 15,
-                  child: Image.asset('images/icon_video.png'),
-                ),
-                Positioned(
-                  bottom: 15,
-                  child: ClipRRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Container(
-                        width: 340,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: pinkColorIcon,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(255, 255, 255, 0.5),
-                              Color.fromRGBO(255, 255, 255, 0.2),
-                            ],
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                Image.asset('images/icon_hart.png'),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text('25.6 K'),
-                                SizedBox(
-                                  width: 40,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('images/icon_comments.png'),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text('5.6 K'),
-                                SizedBox(
-                                  width: 40,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Image.asset('images/icon_share.png'),
-                                SizedBox(
-                                  width: 54,
-                                ),
-                              ],
-                            ),
-                            Image.asset('images/icon_save.png'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
+              ),
+              _GetPostList(),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _getAddStory() {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 12,
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: whiteColor,
+              borderRadius: BorderRadius.circular(17),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(2),
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: backgroundColor1,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Image.asset('images/icon_plus.png'),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'your Story',
+            style: TextStyle(
+              color: whiteColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _getStoryListBox() {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 12,
+      ),
+      child: Column(
+        children: [
+          DottedBorder(
+            borderType: BorderType.RRect,
+            radius: Radius.circular(17),
+            padding: EdgeInsets.all(4),
+            color: pinkColorIcon,
+            dashPattern: [40, 10],
+            strokeWidth: 2,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              child: Container(
+                width: 58,
+                height: 58,
+                child: Image.asset('images/profile.png'),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'data',
+            style: TextStyle(
+              color: whiteColor,
+            ),
+          )
+        ],
       ),
     );
   }
@@ -185,169 +208,122 @@ class HomePage extends StatelessWidget {
     );
   }
 
-/* For me
-  Widget getlistStory() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 17, top: 13, right: 11),
-      child: Container(
-        height: 90,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 15,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 22),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: pinkColorIcon, width: 2),
-                      borderRadius: BorderRadius.circular(17),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: backgroundColor1,
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: AssetImage('images/item4.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'data',
-                    style: TextStyle(
-                      fontFamily: 'GS',
-                      fontSize: 10,
-                      color: whiteColor,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget getPost() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 17, right: 13),
-      child: Column(
+  Widget _GetBodyPost() {
+    return Container(
+      width: 394,
+      height: 440,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          SizedBox(
-            width: double.infinity,
+          Positioned(
+            top: 0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset('images/post_cover.png'),
+            ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      width: 44,
-                      height: 44,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: pinkColorIcon, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.all(2),
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: backgroundColor1, width: 2),
-                        ),
-                        child: Image.asset(
-                          'images/profile.png',
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Ali Tashakori',
-                          style: TextStyle(
-                            fontFamily: 'GB',
-                            fontSize: 12,
-                            color: whiteColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          'برنامه نویس فلاتر',
-                          style: TextStyle(
-                            fontFamily: 'SM',
-                            fontSize: 12,
-                            color: whiteColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.more_vert_outlined,
-                ),
-                color: whiteColor,
-              ),
-            ],
+          Positioned(
+            top: 15,
+            right: 15,
+            child: Image.asset('images/icon_video.png'),
           ),
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                width: 394,
-                height: 394,
-                child: Image.asset(
-                  'images/post_cover.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Positioned(
-                top: 381,
+          Positioned(
+            bottom: 15,
+            child: ClipRRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: whiteColor,
-                  ),
                   width: 340,
                   height: 46,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color.fromRGBO(255, 255, 255, 0.5),
+                        Color.fromRGBO(255, 255, 255, 0.2),
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset('images/icon_hart.png'),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            '25.6 K',
+                            style: TextStyle(
+                              fontFamily: 'GB',
+                              fontSize: 14,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 42,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset('images/icon_comments.png'),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            '5.6 K',
+                            style: TextStyle(
+                              fontFamily: 'GB',
+                              fontSize: 14,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 42,
+                      ),
+                      Image.asset('images/icon_share.png'),
+                      SizedBox(
+                        width: 42,
+                      ),
+                      Image.asset('images/icon_save.png'),
+                    ],
+                  ),
                 ),
-              )
-            ],
+              ),
+            ),
           )
         ],
       ),
     );
   }
-  */
+
+  Widget _GetPostList() {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            SizedBox(
+              height: 34,
+            ),
+            _getHeaderPost(),
+            SizedBox(
+              height: 24,
+            ),
+            _GetBodyPost(),
+          ],
+        );
+      },
+    );
+  }
 }
