@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:instagram/constants/colors/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:instagram/screens/share_bottomsheet.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,10 +39,18 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
+                    barrierColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                     context: context,
+                    isScrollControlled: true,
                     builder: (context) {
-                      return Center(
-                        child: Text('data'),
+                      return DraggableScrollableSheet(
+                        initialChildSize: 0.4,
+                        minChildSize: 0.2,
+                        maxChildSize: 0.6,
+                        builder: (context, controller) {
+                          return ShareBottomSheet(controller: controller);
+                        },
                       );
                     },
                   );
