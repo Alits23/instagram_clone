@@ -33,10 +33,10 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ElevatedButton(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
                 onPressed: () {
                   showModalBottomSheet(
                     barrierColor: Colors.transparent,
@@ -57,19 +57,25 @@ class HomePage extends StatelessWidget {
                 },
                 child: Text('Click for bottom sheet'),
               ),
-              Container(
-                height: 120,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return index == 0 ? _getAddStory() : _getStoryListBox();
-                  },
-                ),
-              ),
-              _GetPostList(),
-            ],
-          ),
+            ),
+            SliverToBoxAdapter(
+              child: _getStoryList(),
+            ),
+            _GetPostList(),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget _getStoryList() {
+    return Container(
+      height: 120,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return index == 0 ? _getAddStory() : _getStoryListBox();
+        },
       ),
     );
   }
@@ -315,24 +321,24 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _GetPostList() {
-    return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            SizedBox(
-              height: 34,
-            ),
-            _getHeaderPost(),
-            SizedBox(
-              height: 24,
-            ),
-            _GetBodyPost(),
-          ],
-        );
-      },
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        childCount: 4,
+        (context, index) {
+          return Column(
+            children: [
+              SizedBox(
+                height: 34,
+              ),
+              _getHeaderPost(),
+              SizedBox(
+                height: 24,
+              ),
+              _GetBodyPost(),
+            ],
+          );
+        },
+      ),
     );
   }
 }
