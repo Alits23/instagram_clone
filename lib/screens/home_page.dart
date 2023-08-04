@@ -44,13 +44,17 @@ class HomePage extends StatelessWidget {
                     context: context,
                     isScrollControlled: true,
                     builder: (context) {
-                      return DraggableScrollableSheet(
-                        initialChildSize: 0.4,
-                        minChildSize: 0.2,
-                        maxChildSize: 0.6,
-                        builder: (context, controller) {
-                          return ShareBottomSheet(controller: controller);
-                        },
+                      return Padding(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: DraggableScrollableSheet(
+                          initialChildSize: 0.5,
+                          minChildSize: 0.2,
+                          maxChildSize: 0.7,
+                          builder: (context, controller) {
+                            return ShareBottomSheet(controller: controller);
+                          },
+                        ),
                       );
                     },
                   );

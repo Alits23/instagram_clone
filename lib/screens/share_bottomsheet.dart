@@ -30,6 +30,72 @@ class ShareBottomSheet extends StatelessWidget {
     return CustomScrollView(
       controller: controller,
       slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              Container(
+                width: 67,
+                height: 5,
+                margin: EdgeInsets.only(top: 10, bottom: 25),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(100),
+                  ),
+                  color: whiteColor,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Share',
+                    style: TextStyle(
+                      fontFamily: 'GB',
+                      fontSize: 20,
+                      color: whiteColor,
+                    ),
+                  ),
+                  Image.asset('images/icon_share_bottomsheet.png'),
+                ],
+              ),
+              SizedBox(
+                height: 32,
+              ),
+              Container(
+                height: 46,
+                decoration: BoxDecoration(
+                  color: whiteColor.withOpacity(0.4),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(13),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Image.asset('images/icon_search.png'),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search User',
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 32,
+              ),
+            ],
+          ),
+        ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
@@ -37,6 +103,7 @@ class ShareBottomSheet extends StatelessWidget {
                 color: pinkColorIcon,
               );
             },
+            childCount: 25,
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
