@@ -9,11 +9,45 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: SafeArea(
-        child: Column(
-          children: [
-            _getSearchBox(),
-            SizedBox(height: 20),
-            _getItemList(),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  _getSearchBox(),
+                  SizedBox(height: 20),
+                  _getItemList(),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 17),
+              sliver: SliverGrid(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Container(
+                      width: 128,
+                      height: 128,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        image: DecorationImage(
+                          image: AssetImage('images/Rectangle 33.png'),
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: 26,
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 10,
+                ),
+              ),
+            )
           ],
         ),
       ),
