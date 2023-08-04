@@ -50,7 +50,7 @@ class SearchPage extends StatelessWidget {
           height: 17,
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 17),
+          margin: EdgeInsets.only(left: 17, right: 17, top: 12),
           height: 46,
           decoration: BoxDecoration(
             color: Color.fromRGBO(39, 43, 64, 1),
@@ -83,7 +83,7 @@ class SearchPage extends StatelessWidget {
               ),
               Image.asset('images/icon_scan.png'),
               SizedBox(
-                width: 10,
+                width: 15,
               ),
             ],
           ),
