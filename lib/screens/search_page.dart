@@ -26,18 +26,7 @@ class SearchPage extends StatelessWidget {
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    return Container(
-                      width: 128,
-                      height: 128,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        image: DecorationImage(
-                          image: AssetImage('images/Rectangle 33.png'),
-                        ),
-                      ),
-                    );
+                    return _getPostGrid();
                   },
                   childCount: 26,
                 ),
@@ -130,6 +119,21 @@ class SearchPage extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _getPostGrid() {
+    return Container(
+      width: 128,
+      height: 128,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+        image: DecorationImage(
+          image: AssetImage('images/Rectangle 33.png'),
+        ),
       ),
     );
   }
