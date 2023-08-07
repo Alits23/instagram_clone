@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/constants/colors/colors.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -19,19 +20,25 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 17),
-              sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return _getPostGrid();
-                  },
-                  childCount: 26,
+            SliverToBoxAdapter(
+              child: GridView.custom(
+                gridDelegate: SliverQuiltedGridDelegate(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 4,
+                  pattern: [
+                    QuiltedGridTile(2, 2),
+                    QuiltedGridTile(1, 1),
+                    QuiltedGridTile(1, 1),
+                    QuiltedGridTile(1, 2),
+                  ],
                 ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 10,
+                childrenDelegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Container(
+                      color: pinkColorIcon,
+                    );
+                  },
                 ),
               ),
             )
