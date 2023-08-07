@@ -15,9 +15,7 @@ class SearchPage extends StatelessWidget {
               child: Column(
                 children: [
                   _getSearchBox(),
-                  SizedBox(height: 20),
                   _getItemList(),
-                  SizedBox(height: 20),
                 ],
               ),
             ),
@@ -53,10 +51,8 @@ class SearchPage extends StatelessWidget {
           margin: EdgeInsets.only(left: 17, right: 17, top: 12),
           height: 46,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(39, 43, 64, 1),
-            borderRadius: BorderRadius.all(
-              Radius.circular(13),
-            ),
+            color: backgroundColor2,
+            borderRadius: BorderRadius.all(Radius.circular(13)),
           ),
           child: Row(
             children: [
@@ -94,27 +90,30 @@ class SearchPage extends StatelessWidget {
 
   Widget _getItemList() {
     return Container(
-      padding: EdgeInsets.only(left: 17),
       height: 23,
+      margin: EdgeInsets.only(top: 20, bottom: 20, left: 17),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 20,
         itemBuilder: (context, index) {
           return Container(
-            margin: EdgeInsets.only(right: 15),
+            margin: EdgeInsets.only(right: 14),
             width: 60,
             height: 23,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(39, 43, 64, 1),
+              color: backgroundColor2,
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
               ),
             ),
             child: Center(
               child: Text(
-                'Hashtag',
+                'Account $index',
                 style: TextStyle(
-                    color: whiteColor, fontFamily: 'GB', fontSize: 10),
+                  color: whiteColor,
+                  fontFamily: 'GM',
+                  fontSize: 10,
+                ),
               ),
             ),
           );
