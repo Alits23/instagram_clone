@@ -20,34 +20,16 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-            SliverToBoxAdapter(
-              child: GridView.custom(
-                gridDelegate: SliverQuiltedGridDelegate(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 4,
-                  pattern: [
-                    QuiltedGridTile(2, 2),
-                    QuiltedGridTile(1, 1),
-                    QuiltedGridTile(1, 1),
-                    QuiltedGridTile(1, 2),
-                  ],
-                ),
-                childrenDelegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Container(
-                      color: pinkColorIcon,
-                    );
-                  },
-                ),
-              ),
-            )
+            _getGridList(),
           ],
         ),
       ),
     );
   }
 
+/*
+
+*/
   Widget _getSearchBox() {
     return Column(
       children: [
@@ -98,7 +80,7 @@ class SearchPage extends StatelessWidget {
   Widget _getItemList() {
     return Container(
       height: 23,
-      margin: EdgeInsets.only(top: 20, bottom: 20, left: 17),
+      margin: EdgeInsets.only(top: 20, bottom: 20, left: 17, right: 17),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 20,
@@ -129,16 +111,45 @@ class SearchPage extends StatelessWidget {
     );
   }
 
-  Widget _getPostGrid() {
+  Widget _getGridList() {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 17),
+      sliver: SliverGrid(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return _getPostGrid(index);
+          },
+          childCount: 10,
+        ),
+        gridDelegate: SliverQuiltedGridDelegate(
+          crossAxisCount: 3,
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
+          repeatPattern: QuiltedGridRepeatPattern.inverted,
+          pattern: [
+            QuiltedGridTile(2, 1),
+            QuiltedGridTile(2, 2),
+            QuiltedGridTile(1, 1),
+            QuiltedGridTile(1, 1),
+            QuiltedGridTile(1, 1),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _getPostGrid(int index) {
     return Container(
-      width: 128,
-      height: 128,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
-        image: DecorationImage(
-          image: AssetImage('images/Rectangle 33.png'),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: Image.asset('images/item$index.png'),
         ),
       ),
     );
