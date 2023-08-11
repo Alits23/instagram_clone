@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/screens/home_page.dart';
 import 'package:instagram/screens/login_page.dart';
+import 'package:instagram/screens/post.dart';
 import 'package:instagram/screens/search_page.dart';
 import 'package:instagram/screens/switch_account_page.dart';
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SearchPage(),
+      home: PostPage(),
     );
   }
 }
