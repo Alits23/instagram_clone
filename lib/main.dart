@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/screens/activity_page.dart';
 import 'package:instagram/screens/home_page.dart';
 import 'package:instagram/screens/login_page.dart';
 import 'package:instagram/screens/post_page.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: PostPage(),
+      home: ActivityPage(),
     );
   }
 }
