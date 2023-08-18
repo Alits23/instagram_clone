@@ -32,36 +32,24 @@ class _ActivityPageState extends State<ActivityPage>
                 children: [
                   CustomScrollView(
                     slivers: [
-                      SliverPadding(
-                        padding: EdgeInsets.only(left: 35),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            childCount: 100,
-                            (context, index) {
-                              return Row(
-                                children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      color: pinkColorIcon,
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      child: Image.asset('images/profile.png'),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 32,
+                            left: 30,
+                            bottom: 20,
+                          ),
+                          child: Text(
+                            'New',
+                            style: TextStyle(
+                              color: whiteColor,
+                              fontFamily: 'GB',
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
+                      _getRow(),
                     ],
                   ),
                   Container(
@@ -98,6 +86,111 @@ class _ActivityPageState extends State<ActivityPage>
             text: 'You',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _getRow() {
+    return SliverPadding(
+      padding: EdgeInsets.only(left: 17),
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          childCount: 100,
+          (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(
+                bottom: 20,
+                right: 17,
+              ),
+              child: Row(
+                children: [
+                  Image.asset('images/dotpink.png'),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      color: pinkColorIcon,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      child: Image.asset('images/profile.png'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Amirahmad Adibi',
+                            style: TextStyle(
+                              color: whiteColor,
+                              fontFamily: 'GB',
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Start following',
+                            style: TextStyle(
+                              color: greyColor,
+                              fontFamily: 'GB',
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'you 3 min',
+                        style: TextStyle(
+                          color: greyColor,
+                          fontFamily: 'GB',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                        width: 2,
+                        color: greyColor,
+                      ),
+                      elevation: 0,
+                      backgroundColor: backgroundColor1,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Message',
+                      style: TextStyle(
+                        color: greyColor,
+                        fontFamily: 'GB',
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
