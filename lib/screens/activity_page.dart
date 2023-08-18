@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram/constants/colors/colors.dart';
+import 'package:instagram/model/enums/activity_type_enum.dart';
 
 class ActivityPage extends StatefulWidget {
   const ActivityPage({super.key});
@@ -30,30 +31,9 @@ class _ActivityPageState extends State<ActivityPage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 32,
-                            left: 30,
-                            bottom: 20,
-                          ),
-                          child: Text(
-                            'New',
-                            style: TextStyle(
-                              color: whiteColor,
-                              fontFamily: 'GB',
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                      _getRow(),
-                    ],
-                  ),
+                  _getSampleList(),
                   Container(
-                    color: greyColor,
+                    color: backgroundColor1,
                   ),
                 ],
               ),
@@ -61,6 +41,108 @@ class _ActivityPageState extends State<ActivityPage>
           ],
         ),
       ),
+    );
+  }
+
+  Widget _getSampleList() {
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 30,
+              bottom: 20,
+            ),
+            child: Text(
+              'New',
+              style: TextStyle(
+                color: whiteColor,
+                fontFamily: 'GB',
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.only(left: 17),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 3,
+              (context, index) {
+                return _getRow(ActivityStatus.likes);
+              },
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 30,
+              bottom: 20,
+            ),
+            child: Text(
+              'Today',
+              style: TextStyle(
+                color: whiteColor,
+                fontFamily: 'GB',
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.only(left: 17),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 2,
+              (context, index) {
+                return _getRow(ActivityStatus.following);
+              },
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.only(left: 17),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 3,
+              (context, index) {
+                return _getRow(ActivityStatus.likes);
+              },
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 30,
+              bottom: 20,
+            ),
+            child: Text(
+              'This week',
+              style: TextStyle(
+                color: whiteColor,
+                fontFamily: 'GB',
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.only(left: 17),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 4,
+              (context, index) {
+                return _getRow(ActivityStatus.followback);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -90,108 +172,179 @@ class _ActivityPageState extends State<ActivityPage>
     );
   }
 
-  Widget _getRow() {
-    return SliverPadding(
-      padding: EdgeInsets.only(left: 17),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          childCount: 100,
-          (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                bottom: 20,
-                right: 17,
+  Widget _getRow(ActivityStatus status) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 20,
+        right: 17,
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 6,
+            width: 6,
+            decoration: BoxDecoration(
+              color: pinkColorIcon,
+              shape: BoxShape.circle,
+            ),
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
               ),
-              child: Row(
+              color: pinkColorIcon,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Image.asset('images/profile.png'),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Image.asset('images/dotpink.png'),
+                  Text(
+                    'AmirahmadAdibi',
+                    style: TextStyle(
+                      color: whiteColor,
+                      fontFamily: 'GB',
+                      fontSize: 12,
+                    ),
+                  ),
                   SizedBox(
                     width: 5,
                   ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      color: pinkColorIcon,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                      child: Image.asset('images/profile.png'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Amirahmad Adibi',
-                            style: TextStyle(
-                              color: whiteColor,
-                              fontFamily: 'GB',
-                              fontSize: 12,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Start following',
-                            style: TextStyle(
-                              color: greyColor,
-                              fontFamily: 'GB',
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'you 3 min',
-                        style: TextStyle(
-                          color: greyColor,
-                          fontFamily: 'GB',
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Spacer(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(
-                        width: 2,
-                        color: greyColor,
-                      ),
-                      elevation: 0,
-                      backgroundColor: backgroundColor1,
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'Message',
-                      style: TextStyle(
-                        color: greyColor,
-                        fontFamily: 'GB',
-                        fontSize: 12,
-                      ),
+                  Text(
+                    'Start following',
+                    style: TextStyle(
+                      color: greyColor,
+                      fontFamily: 'GB',
+                      fontSize: 12,
                     ),
                   ),
                 ],
               ),
-            );
-          },
-        ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'you',
+                    style: TextStyle(
+                      color: greyColor,
+                      fontFamily: 'GB',
+                      fontSize: 12,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    '3 min',
+                    style: TextStyle(
+                      color: greyColor,
+                      fontFamily: 'GB',
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Spacer(),
+          _getActionActivityRow(status)
+        ],
       ),
     );
+  }
+
+  Widget _getActionActivityRow(ActivityStatus status) {
+    switch (status) {
+      case ActivityStatus.followback:
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: pinkColorIcon,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6),
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            'Follow',
+            style: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 12,
+              color: whiteColor,
+            ),
+          ),
+        );
+
+      case ActivityStatus.following:
+        return OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(
+              color: greyColor,
+              width: 2,
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            'Message',
+            style: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 12,
+              color: whiteColor,
+            ),
+          ),
+        );
+
+      case ActivityStatus.likes:
+        return SizedBox(
+          height: 40,
+          width: 40,
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: Image.asset('images/item0.png'),
+            ),
+          ),
+        );
+
+      default:
+        return OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(
+              color: greyColor,
+              width: 2,
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            'Message',
+            style: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 12,
+              color: whiteColor,
+            ),
+          ),
+        );
+    }
   }
 }
