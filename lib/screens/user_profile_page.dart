@@ -9,7 +9,39 @@ class UserProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: SafeArea(
-        child: _getHeaderProfile(),
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                bottom: PreferredSize(
+                  child: Container(
+                    height: 14,
+                    decoration: BoxDecoration(
+                        color: backgroundColor1,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                        )),
+                  ),
+                  preferredSize: Size.fromHeight(10),
+                ),
+                backgroundColor: backgroundColor1,
+                expandedHeight: 200,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'images/item0.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: Container(
+            child: Container(
+              color: backgroundColor1,
+            ),
+          ),
+        ),
       ),
     );
   }
