@@ -5,6 +5,7 @@ import 'package:instagram/screens/login_page.dart';
 import 'package:instagram/screens/post_page.dart';
 import 'package:instagram/screens/search_page.dart';
 import 'package:instagram/screens/switch_account_page.dart';
+import 'package:instagram/screens/user_profile_page.dart';
 
 import 'constants/colors/colors.dart';
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: ActivityPage(),
+      home: UserProfilePage(),
     );
   }
 }
