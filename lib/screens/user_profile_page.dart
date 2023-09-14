@@ -13,6 +13,13 @@ class UserProfilePage extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                toolbarHeight: 80,
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 18, top: 18),
+                    child: Icon(Icons.menu),
+                  ),
+                ],
                 bottom: PreferredSize(
                   child: Container(
                     height: 14,
@@ -26,13 +33,21 @@ class UserProfilePage extends StatelessWidget {
                   preferredSize: Size.fromHeight(10),
                 ),
                 backgroundColor: backgroundColor1,
-                expandedHeight: 200,
+                expandedHeight: 170,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
-                    'images/item0.png',
+                    'images/item1.png',
                     fit: BoxFit.cover,
                   ),
                 ),
+              ),
+              SliverToBoxAdapter(
+                child: _getHeaderProfile(),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: TabBarviewDelegate(),
               ),
             ];
           },
@@ -111,5 +126,29 @@ class UserProfilePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class TabBarviewDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: pinkColorIcon,
+    );
+  }
+
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => 300;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => 100;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    // TODO: implement shouldRebuild
+    return false;
   }
 }
