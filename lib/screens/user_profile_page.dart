@@ -15,6 +15,8 @@ class UserProfilePage extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 SliverAppBar(
+                  backgroundColor: backgroundColor1,
+                  expandedHeight: 170,
                   toolbarHeight: 80,
                   actions: [
                     Padding(
@@ -35,8 +37,6 @@ class UserProfilePage extends StatelessWidget {
                     ),
                     preferredSize: Size.fromHeight(10),
                   ),
-                  backgroundColor: backgroundColor1,
-                  expandedHeight: 170,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.asset(
                       'images/item1.png',
