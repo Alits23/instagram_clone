@@ -54,8 +54,8 @@ class UserProfilePage extends StatelessWidget {
                   delegate: TabBarviewDelegate(
                     TabBar(
                       indicatorColor: pinkColorIcon,
-                      indicatorWeight: 4,
-                      indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
+                      indicatorWeight: 2,
+                      indicatorPadding: EdgeInsets.only(bottom: 4),
                       tabs: [
                         Tab(
                           icon: Image.asset('images/icon_tab_posts.png'),
@@ -69,54 +69,58 @@ class UserProfilePage extends StatelessWidget {
                 ),
               ];
             },
-            body: TabBarView(
-              children: [
-                CustomScrollView(
-                  slivers: [
-                    SliverPadding(
-                      padding: EdgeInsets.only(top: 20),
-                    ),
-                    SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              child: FittedBox(
-                                fit: BoxFit.cover,
-                                child: Image.asset('images/item$index.png'),
-                              ),
-                            ),
-                          );
-                        },
-                        childCount: 10,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17),
+              child: TabBarView(
+                children: [
+                  CustomScrollView(
+                    slivers: [
+                      SliverPadding(
+                        padding: EdgeInsets.only(top: 20),
                       ),
-                      gridDelegate: SliverQuiltedGridDelegate(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
-                        repeatPattern: QuiltedGridRepeatPattern.inverted,
-                        pattern: [
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(2, 2),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
-                        ],
+                      SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                child: FittedBox(
+                                  fit: BoxFit.cover,
+                                  child: Image.asset('images/item$index.png'),
+                                ),
+                              ),
+                            );
+                          },
+                          childCount: 10,
+                        ),
+                        gridDelegate: SliverQuiltedGridDelegate(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          repeatPattern: QuiltedGridRepeatPattern.inverted,
+                          pattern: [
+                            QuiltedGridTile(1, 1),
+                            QuiltedGridTile(2, 2),
+                            QuiltedGridTile(1, 1),
+                            QuiltedGridTile(1, 1),
+                            QuiltedGridTile(1, 1),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  color: pinkColorIcon,
-                ),
-              ],
+                    ],
+                  ),
+                  Container(
+                    color: pinkColorIcon,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -198,9 +202,12 @@ class TabBarviewDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: backgroundColor1,
-      child: _tabBar,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 17),
+      child: Container(
+        color: backgroundColor1,
+        child: _tabBar,
+      ),
     );
   }
 
