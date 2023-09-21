@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram/constants/colors/colors.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -52,12 +53,15 @@ class UserProfilePage extends StatelessWidget {
                   floating: true,
                   delegate: TabBarviewDelegate(
                     TabBar(
+                      indicatorColor: pinkColorIcon,
+                      indicatorWeight: 4,
+                      indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
                       tabs: [
                         Tab(
-                          text: 'hi',
+                          icon: Image.asset('images/icon_tab_posts.png'),
                         ),
                         Tab(
-                          text: 'bye',
+                          icon: Image.asset('images/icon_tab_bookmark.png'),
                         ),
                       ],
                     ),
@@ -67,8 +71,47 @@ class UserProfilePage extends StatelessWidget {
             },
             body: TabBarView(
               children: [
-                Container(
-                  color: backgroundColor1,
+                CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsets.only(top: 20),
+                    ),
+                    SliverGrid(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: FittedBox(
+                                fit: BoxFit.cover,
+                                child: Image.asset('images/item$index.png'),
+                              ),
+                            ),
+                          );
+                        },
+                        childCount: 10,
+                      ),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(2, 2),
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
                   color: pinkColorIcon,
@@ -162,16 +205,13 @@ class TabBarviewDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  // TODO: implement maxExtent
   double get maxExtent => _tabBar.preferredSize.height;
 
   @override
-  // TODO: implement minExtent
   double get minExtent => _tabBar.preferredSize.height;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
     return false;
   }
 }
