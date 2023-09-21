@@ -69,16 +69,13 @@ class UserProfilePage extends StatelessWidget {
                 ),
               ];
             },
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
-              child: TabBarView(
-                children: [
-                  CustomScrollView(
-                    slivers: [
-                      SliverPadding(
-                        padding: EdgeInsets.only(top: 20),
-                      ),
-                      SliverGrid(
+            body: TabBarView(
+              children: [
+                CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: EdgeInsets.only(top: 20, left: 17, right: 17),
+                      sliver: SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             return Container(
@@ -114,13 +111,13 @@ class UserProfilePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  Container(
-                    color: pinkColorIcon,
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                Container(
+                  color: pinkColorIcon,
+                ),
+              ],
             ),
           ),
         ),
@@ -202,12 +199,9 @@ class TabBarviewDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17),
-      child: Container(
-        color: backgroundColor1,
-        child: _tabBar,
-      ),
+    return Container(
+      color: backgroundColor1,
+      child: _tabBar,
     );
   }
 
