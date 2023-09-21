@@ -36,33 +36,6 @@ class HomePage extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    barrierColor: Colors.transparent,
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).viewInsets.bottom),
-                        child: DraggableScrollableSheet(
-                          initialChildSize: 0.5,
-                          minChildSize: 0.2,
-                          maxChildSize: 0.7,
-                          builder: (context, controller) {
-                            return ShareBottomSheet(controller: controller);
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Text('Click for bottom sheet'),
-              ),
-            ),
-            SliverToBoxAdapter(
               child: _getStoryList(),
             ),
             _GetPostList(),
@@ -227,7 +200,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _GetBodyPost() {
+  Widget _GetBodyPost(BuildContext context) {
     return Container(
       width: 394,
       height: 440,
@@ -308,7 +281,34 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         width: 42,
                       ),
-                      Image.asset('images/icon_share.png'),
+                      InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            barrierColor: Colors.transparent,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (context) {
+                              return Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom),
+                                child: DraggableScrollableSheet(
+                                  initialChildSize: 0.5,
+                                  minChildSize: 0.2,
+                                  maxChildSize: 0.7,
+                                  builder: (context, controller) {
+                                    return ShareBottomSheet(
+                                        controller: controller);
+                                  },
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: Image.asset('images/icon_share.png'),
+                      ),
                       SizedBox(
                         width: 42,
                       ),
@@ -338,7 +338,7 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 24,
               ),
-              _GetBodyPost(),
+              _GetBodyPost(context),
             ],
           );
         },
